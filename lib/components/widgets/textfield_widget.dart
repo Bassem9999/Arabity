@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../view_model/auth_cubit/auth_cubit.dart';
 
 
+// ignore: must_be_immutable
 class TextFieldWidget extends StatelessWidget {
   String label;
   var suffex;
@@ -53,6 +54,7 @@ class TextFieldWidget extends StatelessWidget {
 }
 
 
+// ignore: must_be_immutable
 class UnroundedTextFieldWidget extends StatelessWidget {
   String label;
   bool isPassword;

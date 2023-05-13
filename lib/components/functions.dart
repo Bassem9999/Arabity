@@ -52,6 +52,7 @@ String? myvalEmail(text) {
   if (text.trim().isEmpty) {
     return "This field mustn't be empty";
   }
+  return null;
 }
 
 String? myvalPassword(text) {
@@ -60,6 +61,7 @@ String? myvalPassword(text) {
   } else if (text.trim().length < 6) {
     return "Password should be 6 characters or more";
   }
+  return null;
 }
 
 String? myvalConfirmPassword(text) {
@@ -69,6 +71,7 @@ String? myvalConfirmPassword(text) {
   else if (text != signupPassword.text) {
     return "Passwords is not the same ";
   }
+  return null;
 }
 
  

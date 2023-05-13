@@ -2,6 +2,7 @@
 import 'package:arabity/components/functions.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HomeWidget extends StatelessWidget {
   String text;
   var icon;
