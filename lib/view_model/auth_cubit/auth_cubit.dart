@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../components/controllers.dart';
 import '../../components/functions.dart';
 import '../../repositories/auth_repo.dart';
-import '../../view/home.dart';
+import '../../view/home/home.dart';
 
 part 'auth_state.dart';
 

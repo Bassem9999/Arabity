@@ -7,8 +7,9 @@ import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../components/constants.dart';
-import 'chat.dart';
+import '../../components/constants.dart';
+import '../home/chat.dart';
+
 
 class CarInfo extends StatelessWidget {
   final i_id;

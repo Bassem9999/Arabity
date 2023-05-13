@@ -2,7 +2,7 @@ import 'package:arabity/components/constants.dart';
 import 'package:arabity/components/functions.dart';
 import 'package:flutter/material.dart';
 
-import '../../view/information.dart';
+import '../../view/cars/information.dart';
 
 class CarWidget extends StatelessWidget {
   final id;

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../view/auth/login.dart';
-import '../../view/home.dart';
+import '../../view/home/home.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});

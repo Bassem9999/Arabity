@@ -1,13 +1,13 @@
 
 import 'package:arabity/components/widgets/drawer_widget.dart';
-import 'package:arabity/view/search.dart';
+import 'package:arabity/view/cars/add.dart';
 import 'package:flutter/material.dart';
 
-import '../components/constants.dart';
-import '../components/widgets/home_widget.dart';
-import 'add.dart';
-import 'cars.dart';
-import 'favourites.dart';
+import '../../components/constants.dart';
+import '../../components/widgets/home_widget.dart';
+import '../cars/cars.dart';
+import '../cars/favourites.dart';
+import '../search/search.dart';
 import 'prices.dart';
 
 //import 'package:carousel_pro/carousel_pro.dart';

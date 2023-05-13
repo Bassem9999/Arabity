@@ -1,9 +1,9 @@
 import 'package:arabity/view/auth/login.dart';
+import 'package:arabity/view/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'view/home.dart';
 import 'view_model/app_cubit/app_cubit.dart';
 import 'view_model/auth_cubit/auth_cubit.dart';
 
