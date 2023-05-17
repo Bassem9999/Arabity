@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045775288822",
+    "project_id": "arabity-734ff",
+    "storage_bucket": "arabity-734ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045775288822:android:8adbb323a2325df7c95fd7",
+        "android_client_info": {
+          "package_name": "com.bassem.arabity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045775288822-anbukedv740fta16337jmdu9hpnsdirv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB-IQn1CksRIvfudZGpz5JvXYXzD0t7UM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045775288822-anbukedv740fta16337jmdu9hpnsdirv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

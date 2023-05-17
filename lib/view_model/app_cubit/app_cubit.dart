@@ -63,29 +63,9 @@ class AppCubit extends Cubit<AppState> {
   emit(UpdateState());
  }
  
- allowNotificationAccess(){
-  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-    if(!isAllowed){
-      AwesomeNotifications().requestPermissionToSendNotifications();
-    }
-  } );
-  
- }
+ 
 
- createNotification(context)async{
-  String timeZone = await AwesomeNotifications().getLocalTimeZoneIdentifier();
- AwesomeNotifications().createNotification(content: NotificationContent(
-  id: 1,
-  channelKey: 'basic_channel',
-  title: 'Notification Test',
-  body: 'Hello World',
-  ),
-  schedule: NotificationInterval(interval: 10,timeZone: timeZone,repeats: false),
-  );
-  // AwesomeNotifications().setListeners(onActionReceivedMethod: (b){
-  //   return myPushNavigator(context, CarsList());
-  // });  
- }
+
 
 
  void addCarAdditions(String addition,bool value, int controllerId){

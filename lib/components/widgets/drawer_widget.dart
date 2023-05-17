@@ -1,9 +1,7 @@
 
 import 'package:arabity/components/functions.dart';
+import 'package:arabity/view_model/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../view/auth/login.dart';
 import '../../view/home/home.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -11,8 +9,9 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = AuthCubit.get(context);
     return Drawer(
-      backgroundColor: Colors.blue.withOpacity(0.5),
+      backgroundColor: Colors.blue.withOpacity(0.55),
       child: ListView(children: <Widget>[ 
         const UserAccountsDrawerHeader(
          accountName: Text(""),
@@ -58,12 +57,8 @@ class MyDrawer extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.logout,color: Colors.white),
           title: const Text("تسجيل خروج",style: TextStyle(color: Colors.white,fontSize: 20)),
-          onTap: () async {
-            SharedPreferences preferences = await SharedPreferences.getInstance();
-            preferences.remove('phone');
-            myPushNavigator(context,const Login());
-            print(preferences.getString('phone'));
-            
+          onTap: () {
+           cubit.logout(context);
           },
         ),
 

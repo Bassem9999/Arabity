@@ -1,4 +1,4 @@
-package com.example.arabity
+package com.bassem.arabity
 
 import io.flutter.embedding.android.FlutterActivity
 

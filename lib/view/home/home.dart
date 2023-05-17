@@ -1,6 +1,7 @@
 
 import 'package:arabity/components/widgets/drawer_widget.dart';
 import 'package:arabity/view/cars/add.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/constants.dart';
@@ -26,7 +27,11 @@ class Home extends StatelessWidget {
         centerTitle: true,
         ),
         drawer: const MyDrawer(),
-        //floatingActionButton: FloatingActionButton(onPressed: (){carsRepo.fetchCarsResponse();}),
+        // floatingActionButton: FloatingActionButton(onPressed: ()async{
+        //   await FirebaseMessaging.instance.getToken().then((value) {
+        //     print(value);
+        //   });
+        // }),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 20),
           decoration: const BoxDecoration(

@@ -6,6 +6,7 @@ import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../components/constants.dart';
 import '../home/chat.dart';
@@ -398,9 +399,7 @@ class CarInfo extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-      
-                    // launchUrl(Uri.parse('tel:$i_phone'));
-                    cubit.createNotification(context);
+                     launchUrl(Uri.parse('tel:$i_phone'));
                     },
                   ),
                 ),
