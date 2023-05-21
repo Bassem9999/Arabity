@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../components/constants.dart';
-import '../home/chat.dart';
+import '../chatting/chat.dart';
 
 
 class CarInfo extends StatelessWidget {
@@ -21,6 +21,7 @@ class CarInfo extends StatelessWidget {
   final i_transimition;
   final i_km;
   final i_year;
+  final i_ownerId;
   final i_owner;
   final i_phone;
   final i_city;
@@ -44,6 +45,7 @@ class CarInfo extends StatelessWidget {
      required this.i_transimition,
      required this.i_km,
      required this.i_year,
+     required this.i_ownerId,
      required this.i_owner,
      required this.i_phone,
      required this.i_city,
@@ -124,7 +126,7 @@ class CarInfo extends StatelessWidget {
                   )
                 ],
                ),
-             ), Colors.white);
+             ),null, Colors.white);
             },
             splashColor: Colors.red,
           ),
@@ -364,9 +366,9 @@ class CarInfo extends StatelessWidget {
                     child: Container(
                       color: Colors.blue,
                       padding: const EdgeInsets.all(10),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text("مراسلة",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
                           SizedBox(width: 7,),
                           Icon(Icons.chat_outlined,color: Colors.white,size: 30,),
@@ -376,9 +378,12 @@ class CarInfo extends StatelessWidget {
                     onTap: () async {
                       SharedPreferences preferences = await SharedPreferences.getInstance();
                       // ignore: use_build_context_synchronously
-                      myPushNavigator(context, ChatPage(sendFrom: preferences.getString('phone').toString() , sendTo: i_phone,));
-                      //launchUrl(Uri.parse('https://wa.me/$i_phone'));
-                      
+                      myPushNavigator(context, ChatPage(
+                        sendFrom: preferences.getString('phone').toString() , 
+                        sendTo: i_phone, 
+                        recieverId: i_ownerId.toString(),));
+
+                      //launchUrl(Uri.parse('https://wa.me/$i_phone')); 
                     },
                   ),
                 ),

@@ -13,6 +13,7 @@ class CarWidget extends StatelessWidget {
   final transimition;
   final km;
   final year;
+  final ownerId;
   final name;
   final phone;
   final city;
@@ -40,6 +41,7 @@ class CarWidget extends StatelessWidget {
    required this.year,
    required this.name,
    required this.phone,
+   required this.ownerId,
    required this.city,
    required this.additions,
    required this.info,
@@ -102,6 +104,7 @@ class CarWidget extends StatelessWidget {
                 i_transimition:transimition,
                 i_km:km , 
                 i_year:year,
+                i_ownerId:ownerId,
                 i_owner:name,
                 i_phone:phone,
                 i_city:city,

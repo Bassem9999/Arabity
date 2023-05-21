@@ -3,10 +3,11 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:arabity/components/functions.dart';
 import 'package:arabity/components/service.dart';
 import 'package:arabity/repositories/cars_repo.dart';
-import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -63,9 +64,24 @@ class AppCubit extends Cubit<AppState> {
   emit(UpdateState());
  }
  
- 
+  notifyPermission()async{
+    await FirebaseMessaging.instance.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+);
+  }
 
-
+fcmConfig(context){
+  FirebaseMessaging.onMessage.listen((message) { 
+    snackbar(context, "${message.notification!.body}", Colors.grey);
+  print(message.notification!.body);
+  });
+}
 
 
  void addCarAdditions(String addition,bool value, int controllerId){
@@ -129,13 +145,15 @@ class AppCubit extends Cubit<AppState> {
  
 
  uploadCar(context) async {
+  SharedPreferences preferences =await SharedPreferences.getInstance();
   var formData = formstateAddCar.currentState;
   formData!.save();
   if(formData.validate()){
-
     if (images_files.isNotEmpty){
+      showcircle(context);
       var myResponse = await carsRepo.addCarResponse(
          {
+        'ownerId': preferences.getString('id'),
         'owner': carOwnername.text,
         'phone': carOwnerPhone.text,
         'city': city,
@@ -172,9 +190,11 @@ class AppCubit extends Cubit<AppState> {
       images_names.clear();
       images_64.clear();
       carOwnername.text = carOwnerPhone.text = carColor.text = carPrice.text = carKm.text = carYear.text = carInfo.text = "";
+      Navigator.pop(context);
       emit(AddCarState());
       } else {
        snackbar(context, myResponse['message'], Colors.red);
+       Navigator.pop(context);
        emit(AddCarState());
       }
     }else{
@@ -277,6 +297,14 @@ void deletefromLocalFav({required int id})async{
    
   }
 
+  Future getMyChats({required String sendFrom})async{
+  var messages = await chatRepo.fetchmyChatsResponse({
+      'sendFrom' : sendFrom,
+  });
+  emit(GetChatMessagesState());
+   return messages;
+  }
+
   Future getmessages({required String sendFrom , required String sendTo})async{
   var messages = await chatRepo.fetchChatMessagesResponse({
       'sendFrom' : sendFrom,
@@ -286,13 +314,14 @@ void deletefromLocalFav({required int id})async{
    return messages;
   }
 
-  void sendMessage({required String sendFrom , required String sendTo})async{
+  void sendMessage({required String sendFrom , required String sendTo, required String recieverId})async{
     var formData = chatForm.currentState;
     formData!.save();
     if(formData.validate()){
      await chatRepo.addChatMeassageResponse({
       'sendFrom' : sendFrom,
       'sendTo' : sendTo,
+      'recieverId' : recieverId,
       'message' : message.text,
       'time' : date,
     });

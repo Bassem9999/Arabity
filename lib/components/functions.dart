@@ -11,17 +11,22 @@ myReplaceNavigator(context, screen) {
 }
 
 
-showdialog(context, String text, var content, var color) {
+showdialog(context, String text, var content,actions, var color) {
   return showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text(
-            text,
-            style: TextStyle(color: Colors.white),
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: AlertDialog(
+            title: Text(
+              text,
+              style: TextStyle(color: Colors.white),
+            //  textDirection: TextDirection.rtl,
+            ),
+            content: content,
+            actions:actions ,
+            backgroundColor: color,
           ),
-          content: content,
-          backgroundColor: color,
         );
       });
 }

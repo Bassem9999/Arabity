@@ -32,21 +32,28 @@ class AuthCubit extends Cubit<AuthState> {
         var formdata = formstatelogin.currentState;
           formdata!.save();
           if(formdata.validate()){
+           showcircle(context);
+           await Future.delayed(Duration(seconds: 2),);
             var myresponse = await _authRepo.loginResponse();
             if(myresponse['status']== true){
-                  myReplaceNavigator(context, const Home());
+                  
                   snackbar(context, myresponse['message'], Colors.green);
                   print("success");
-                  preferences.setString('phone', myresponse['data'][0]['phone'].toString());
-                  print(preferences.getString('phone').toString());
+                   await preferences.setString('id', myresponse['data'][0]['id'].toString());
+                   await preferences.setString('name', myresponse['data'][0]['name'].toString());
+                   await preferences.setString('email', myresponse['data'][0]['email'].toString());
+                   await preferences.setString('phone', myresponse['data'][0]['phone'].toString());
                  await FirebaseMessaging.instance.subscribeToTopic("users").then((value) {
                   print("subscribed To Users");
                  });
-                 await FirebaseMessaging.instance.subscribeToTopic("users${myresponse['data'][0]['id'].toString()}").then((value){
-                  print("subscribed To UserId");
+                 await FirebaseMessaging.instance.subscribeToTopic("user${myresponse['data'][0]['id'].toString()}").then((value){
+                  print("subscribed To User${myresponse['data'][0]['id'].toString()}");
                   });
+                  myReplaceNavigator(context, const Home());
             }
             else{
+           // Navigator.of(context,rootNavigator: true).pop(true);
+              Navigator.pop(context);
               snackbar(context, myresponse['message'], Colors.red);
               print(myresponse['message']);
               print("failed");  
@@ -55,7 +62,6 @@ class AuthCubit extends Cubit<AuthState> {
       }
 
       catch(e){
-        print(e);
         print(e);
       }
     }
@@ -71,23 +77,24 @@ class AuthCubit extends Cubit<AuthState> {
       showcircle(context);
       var myresponse = await _authRepo.signupResponse();
       if(myresponse['status']== true){
-            myReplaceNavigator(context, const Home());
-            snackbar(context, myresponse['message'], Colors.green);
             print("success");
             await preferences.setString('id', myresponse['data'][0]['id'].toString());
             await preferences.setString('name', myresponse['data'][0]['name'].toString());
             await preferences.setString('email', myresponse['data'][0]['email'].toString());
             await preferences.setString('phone', myresponse['data'][0]['phone'].toString());
-            await FirebaseMessaging.instance.subscribeToTopic("users").then((value) {
+            await FirebaseMessaging.instance.subscribeToTopic("user").then((value) {
               print("Subscribed To Users");
               });
               await FirebaseMessaging.instance.subscribeToTopic("user${preferences.getString('id')}").then((value){
-              print("Subscribed To UserId");
+              print("Subscribed To User${myresponse['data'][0]['id'].toString()}");
               });
+              myReplaceNavigator(context, const Home());
+              snackbar(context, myresponse['message'], Colors.green);
           //  setpref(myresponse['data']['email']);
-            
       }
       else{
+       // Navigator.of(context,rootNavigator: true).pop(true);
+        Navigator.pop(context);
         snackbar(context, myresponse['message'], Colors.red);
         print("failed");  
     }

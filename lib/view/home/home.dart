@@ -1,7 +1,7 @@
 
 import 'package:arabity/components/widgets/drawer_widget.dart';
 import 'package:arabity/view/cars/add.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/constants.dart';
@@ -13,10 +13,22 @@ import 'prices.dart';
 
 //import 'package:carousel_pro/carousel_pro.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
 
    const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    var cubit = AppCubit.get(context);
+    cubit.fcmConfig(context);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Directionality(

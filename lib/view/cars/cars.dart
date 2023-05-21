@@ -34,6 +34,7 @@ class CarsList extends StatelessWidget {
                 year: snapshot.data[i]['year'],
                 name: snapshot.data[i]['owner'],
                 phone: snapshot.data[i]['phone'],
+                ownerId: snapshot.data[i]['ownerId'],
                 city: snapshot.data[i]['city'],
                 additions: snapshot.data[i]['additions'],
                 info: snapshot.data[i]['info'],

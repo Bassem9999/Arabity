@@ -55,6 +55,7 @@ class _SearchState extends State<Searchedcar> {
                           km: snapshot.data[i]['km'],
                           year: snapshot.data[i]['year'],
                           color: snapshot.data[i]['year'],
+                          ownerId: snapshot.data[i]['ownerId'],
                           name: snapshot.data[i]['owner'],
                           phone: snapshot.data[i]['phone'],
                           city: snapshot.data[i]['city'],

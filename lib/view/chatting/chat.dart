@@ -10,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ChatPage extends StatelessWidget {
   String sendFrom;
   String sendTo;
-   ChatPage({super.key,required this.sendFrom, required this.sendTo});
+  String recieverId;
+   ChatPage({super.key,required this.sendFrom, required this.sendTo, required this.recieverId});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,7 @@ class ChatPage extends StatelessWidget {
                       ),
                       IconButton(
                           onPressed:(){
-                            cubit.sendMessage(sendFrom: sendFrom,sendTo: sendTo);
+                            cubit.sendMessage(sendFrom: sendFrom,sendTo: sendTo, recieverId: recieverId);
                           },
                           icon: const Icon(
                             Icons.send,

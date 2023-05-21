@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
          BlocProvider(create: (context) => AuthCubit(),),
-         BlocProvider(create: (context) => AppCubit()..createDatabase()..fillBrandsList(),),
+         BlocProvider(create: (context) => AppCubit()..notifyPermission()..createDatabase()..fillBrandsList(),),
       ],
       child: MaterialApp(
         title: 'Arabity',

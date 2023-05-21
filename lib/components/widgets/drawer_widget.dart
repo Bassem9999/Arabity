@@ -2,6 +2,8 @@
 import 'package:arabity/components/functions.dart';
 import 'package:arabity/view_model/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../view/chatting/mychats.dart';
 import '../../view/home/home.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -42,6 +44,15 @@ class MyDrawer extends StatelessWidget {
           title: const Text("المفضلات",style: TextStyle(color: Colors.white,fontSize: 20)),
           onTap: (){
           //  Navigator.of(context).push(MaterialPageRoute(builder: (context){return Favlist(f_email: d_email,);}));
+          },
+        ),
+
+        ListTile(
+          leading: const Icon(Icons.chat_outlined,color: Colors.white),
+          title: const Text("المحادثات",style: TextStyle(color: Colors.white,fontSize: 20)),
+          onTap: ()async{
+            SharedPreferences preferences = await SharedPreferences.getInstance();
+          myPushNavigator(context, ChatsList(sendFrom: preferences.getString('phone').toString(),sendTo: "",recieverId: "",));
           },
         ),
 

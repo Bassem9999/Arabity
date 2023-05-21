@@ -579,8 +579,11 @@ class _AddcarState extends State<Addcar> {
                       margin: const EdgeInsets.symmetric(horizontal: 110),
                       child: ElevatedButton(
                         child: const Text(
-                          "Upload my Car",
-                          style: TextStyle(color: Colors.white),
+                          "اضف سيارتى",
+                          style: TextStyle(color: Colors.white,fontSize: 18),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(200, 40)
                         ),
                         // color: Colors.blueAccent,
                         onPressed: () {

@@ -25,5 +25,13 @@ Future addChatMeassageResponse(data)async{
     return responsebody;
 }
 
+Future fetchmyChatsResponse(data)async{
+  var url = "$baseUrl/getmychats.php";  
+  var response = await http.post(Uri.parse(url),body: data);
+  var responsebody = jsonDecode(response.body);
+  print(responsebody);
+  return responsebody;
+}
+
 
 }
