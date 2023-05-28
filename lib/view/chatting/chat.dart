@@ -1,4 +1,3 @@
-
 import 'package:arabity/components/controllers.dart';
 import 'package:arabity/components/functions.dart';
 import 'package:arabity/components/widgets/textfield_widget.dart';
