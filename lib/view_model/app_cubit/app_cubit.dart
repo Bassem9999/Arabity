@@ -34,6 +34,7 @@ class AppCubit extends Cubit<AppState> {
   List brandsList = [];
   List modelsList = [];
   List searchModelsList = [];
+  List chats = [];
   String date = "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}";
   String carAdditions = "";
   bool airCondition = false;
@@ -298,11 +299,21 @@ void deletefromLocalFav({required int id})async{
   }
 
   Future getMyChats({required String sendFrom})async{
-  var messages = await chatRepo.fetchmyChatsResponse({
-      'sendFrom' : sendFrom,
+    chats.clear();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await chatRepo.fetchmyChatsResponse({
+        'sendFrom' : sendFrom,
+    }).then((value) {
+      for(var item in value){
+          if(chats.contains(item['sendTo']) == false && chats.contains(item['sendFrom']) == false && chats.contains(preferences.getString('phone')) == false){
+          //chats.add(item['sendTo']);
+          chats.add(item['sendFrom']);
+        }      
+      }
+    print(chats);
   });
-  emit(GetChatMessagesState());
-   return messages;
+//  emit(GetChatMessagesState());
+ //  return messages;
   }
 
   Future getmessages({required String sendFrom , required String sendTo})async{
