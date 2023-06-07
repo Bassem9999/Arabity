@@ -1,10 +1,11 @@
 
-import 'package:arabity/components/functions.dart';
+import 'package:arabity/data/user_data.dart';
 import 'package:arabity/view_model/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../view/chatting/mychats.dart';
 import '../../view/home/home.dart';
+import '../utils/functions.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -43,6 +44,7 @@ class MyDrawer extends StatelessWidget {
           leading: const Icon(Icons.favorite_border,color: Colors.white),
           title: const Text("المفضلات",style: TextStyle(color: Colors.white,fontSize: 20)),
           onTap: (){
+            print(UserData.userEmail);
           //  Navigator.of(context).push(MaterialPageRoute(builder: (context){return Favlist(f_email: d_email,);}));
           },
         ),

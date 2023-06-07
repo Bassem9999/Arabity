@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
-import '../../components/constants.dart';
-import '../../components/controllers.dart';
-import '../../components/functions.dart';
+
+import '../../components/utils/constants.dart';
+import '../../components/utils/controllers.dart';
+import '../../components/utils/functions.dart';
 import '../../components/widgets/textfield_widget.dart';
 import '../../view_model/auth_cubit/auth_cubit.dart';
 import '../auth/login.dart';

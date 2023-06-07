@@ -1,7 +1,7 @@
 import 'package:arabity/components/widgets/car_widget.dart';
 import 'package:arabity/components/widgets/drawer_widget.dart';
 import 'package:arabity/model/cars_model.dart';
-import 'package:arabity/repositories/cars_repo.dart';
+import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:flutter/material.dart';
 
 class CarsList extends StatelessWidget {
@@ -10,7 +10,7 @@ class CarsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CarsRepo carsRepo = CarsRepo();
+    var cabit = AppCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -20,12 +20,12 @@ class CarsList extends StatelessWidget {
         ),
         drawer: const MyDrawer(),
         body: FutureBuilder(
-          future:carsRepo.fetchCarsResponse(),
+          future: cabit.getCarsList(),
           builder: (BuildContext context, AsyncSnapshot snapshot){
             if(snapshot.hasData){
                return ListView.builder( itemCount: snapshot.data.length, itemBuilder:(context,i){
                 CarsModel carsModel = CarsModel.fromJson(snapshot.data[i]);
-               return CarWidget(
+               return CarItem(
                 id: carsModel.id,
                 brand: carsModel.brand,
                 model: carsModel.model,

@@ -1,10 +1,10 @@
-import 'package:arabity/components/functions.dart';
+import 'package:arabity/components/utils/controllers.dart';
 import 'package:arabity/components/widgets/textfield_widget.dart';
 import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../components/controllers.dart';
+import '../../components/utils/functions.dart';
 import 'searchedcar.dart';
 
 class Search extends StatefulWidget {

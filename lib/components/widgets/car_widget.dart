@@ -1,10 +1,11 @@
-import 'package:arabity/components/constants.dart';
-import 'package:arabity/components/functions.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../view/cars/information.dart';
+import '../utils/constants.dart';
+import '../utils/functions.dart';
 
-class CarWidget extends StatelessWidget {
+class CarItem extends StatelessWidget {
   final id;
   final brand;
   final model;
@@ -30,7 +31,7 @@ class CarWidget extends StatelessWidget {
   
 
   
-  CarWidget({
+  CarItem({
    required this.id,
    required this.model,
    required this.brand,

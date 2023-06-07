@@ -1,7 +1,8 @@
-import 'package:arabity/components/constants.dart';
 import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../components/utils/constants.dart';
 
 
 

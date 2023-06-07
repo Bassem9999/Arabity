@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:arabity/components/controllers.dart';
 import 'package:http/http.dart' as http;
 
-import '../components/constants.dart';
+import '../components/utils/constants.dart';
+import '../components/utils/controllers.dart';
 
 class AuthRepo{
 

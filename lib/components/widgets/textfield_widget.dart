@@ -11,6 +11,7 @@ class TextFieldWidget extends StatelessWidget {
   bool isPassword;
   var myval;
   TextEditingController mycontroller;
+  
   TextFieldWidget({super.key,
    required this.label,
    required this.suffex,

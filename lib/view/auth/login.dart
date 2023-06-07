@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:arabity/components/constants.dart';
 import 'package:arabity/view/auth/signup.dart';
 import 'package:arabity/view_model/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import '../../components/controllers.dart';
-import '../../components/functions.dart';
+
+import '../../components/utils/constants.dart';
+import '../../components/utils/controllers.dart';
+import '../../components/utils/functions.dart';
 import '../../components/widgets/textfield_widget.dart';
 
 class Login extends StatelessWidget {

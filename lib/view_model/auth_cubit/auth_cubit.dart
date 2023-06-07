@@ -2,8 +2,8 @@ import 'package:arabity/view/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../components/controllers.dart';
-import '../../components/functions.dart';
+import '../../components/utils/controllers.dart';
+import '../../components/utils/functions.dart';
 import '../../repositories/auth_repo.dart';
 import '../../view/home/home.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -36,8 +36,6 @@ class AuthCubit extends Cubit<AuthState> {
            await Future.delayed(Duration(seconds: 2),);
             var myresponse = await _authRepo.loginResponse();
             if(myresponse['status']== true){
-                  
-                  snackbar(context, myresponse['message'], Colors.green);
                   print("success");
                    await preferences.setString('id', myresponse['data'][0]['id'].toString());
                    await preferences.setString('name', myresponse['data'][0]['name'].toString());
@@ -50,6 +48,7 @@ class AuthCubit extends Cubit<AuthState> {
                   print("subscribed To User${myresponse['data'][0]['id'].toString()}");
                   });
                   myReplaceNavigator(context, const Home());
+                  snackbar(context, myresponse['message'], Colors.green);
             }
             else{
            // Navigator.of(context,rootNavigator: true).pop(true);
@@ -108,6 +107,7 @@ class AuthCubit extends Cubit<AuthState> {
 
 
  logout(context)async{
+  showcircle(context);
   SharedPreferences preferences = await SharedPreferences.getInstance();
   await FirebaseMessaging.instance.unsubscribeFromTopic("users").then((value) {
     print("Unsubscribed To Users");

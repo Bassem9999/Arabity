@@ -1,6 +1,7 @@
 
-import 'package:arabity/components/functions.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/functions.dart';
 
 // ignore: must_be_immutable
 class HomeWidget extends StatelessWidget {
@@ -20,8 +21,8 @@ class HomeWidget extends StatelessWidget {
               child: InkWell(
                 child: GridTile(child: Column(children: <Widget>[
                   Container(margin: const EdgeInsets.only(top: 20),child: Icon(icon,size: 70,color: Colors.lightBlueAccent,)),
-                  Container(margin: const EdgeInsets.only(top: 20),
-                  child: Text(text,style: const TextStyle(color:Colors.lightBlueAccent,fontSize: 20 ),))
+                  Container(margin: const EdgeInsets.only(top: 15),
+                  child: Text(text,style: const TextStyle(color:Colors.lightBlueAccent,fontSize: 22 ),))
                 ],)),
               onTap: (){
                myPushNavigator(context, destination);

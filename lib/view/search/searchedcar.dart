@@ -46,7 +46,7 @@ class _SearchState extends State<Searchedcar> {
                   return ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, i) {
-                        return CarWidget(
+                        return CarItem(
                           id: snapshot.data[i]['id'],
                           brand: snapshot.data[i]['brand'],
                           model: snapshot.data[i]['model'],

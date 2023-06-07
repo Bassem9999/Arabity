@@ -3,16 +3,17 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:arabity/data/user_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:arabity/components/functions.dart';
-import 'package:arabity/components/service.dart';
 import 'package:arabity/repositories/cars_repo.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sqflite/sqflite.dart';
-import '../../../components/controllers.dart';
+import '../../components/utils/controllers.dart';
+import '../../components/utils/functions.dart';
+import '../../components/utils/service.dart';
 import '../../repositories/chat_repo.dart';
 import '../../repositories/search_repo.dart';
 
@@ -34,7 +35,6 @@ class AppCubit extends Cubit<AppState> {
   List brandsList = [];
   List modelsList = [];
   List searchModelsList = [];
-  List chats = [];
   String date = "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}";
   String carAdditions = "";
   bool airCondition = false;
@@ -83,6 +83,14 @@ fcmConfig(context){
   print(message.notification!.body);
   });
 }
+
+ void fillUserData()async{
+   SharedPreferences preferences = await SharedPreferences.getInstance();
+   UserData.userId = preferences.getString('id');
+   UserData.userName = preferences.getString('name');
+   UserData.userEmail = preferences.getString('email');
+   UserData.userPhone = preferences.getString('phone');
+ }
 
 
  void addCarAdditions(String addition,bool value, int controllerId){
@@ -204,6 +212,8 @@ fcmConfig(context){
   }
   }
 
+
+
   void createDatabase(){
   openDatabase('favouritecars.db',
   version: 2,
@@ -298,20 +308,36 @@ void deletefromLocalFav({required int id})async{
    
   }
 
+  getCarsList()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    List carsList = [];
+    await carsRepo.fetchCarsResponse().then((value) {
+      for(var i in value){
+        if(i['ownerId'] != preferences.getString('id')){
+          carsList.add(i);
+        }
+      }
+    });
+    return carsList;
+
+  }
+
   Future getMyChats({required String sendFrom})async{
-    chats.clear();
+    List chatsNumbers = [];
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await chatRepo.fetchmyChatsResponse({
         'sendFrom' : sendFrom,
     }).then((value) {
       for(var item in value){
-          if(chats.contains(item['sendTo']) == false && chats.contains(item['sendFrom']) == false && chats.contains(preferences.getString('phone')) == false){
-          //chats.add(item['sendTo']);
-          chats.add(item['sendFrom']);
-        }      
+        if(item['sendFrom'] != preferences.getString('phone') && chatsNumbers.contains(item['sendFrom']) == false){
+           chatsNumbers.add(item['sendFrom']);
+        }
+        else if(item['sendTo'] != preferences.getString('phone') && chatsNumbers.contains(item['sendTo']) == false){
+          chatsNumbers.add(item['sendTo']);
+        }
       }
-    print(chats);
   });
+  return chatsNumbers;
 //  emit(GetChatMessagesState());
  //  return messages;
   }

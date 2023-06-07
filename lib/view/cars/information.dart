@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings, must_be_immutable
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:arabity/components/functions.dart';
 import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../components/constants.dart';
+import '../../components/utils/constants.dart';
+import '../../components/utils/functions.dart';
 import '../chatting/chat.dart';
 
 

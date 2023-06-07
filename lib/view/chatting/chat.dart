@@ -1,10 +1,12 @@
-import 'package:arabity/components/controllers.dart';
-import 'package:arabity/components/functions.dart';
+
 import 'package:arabity/components/widgets/textfield_widget.dart';
 import 'package:arabity/model/chats_model.dart';
 import 'package:arabity/view_model/app_cubit/app_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../components/utils/controllers.dart';
+import '../../components/utils/functions.dart';
 
 // ignore: must_be_immutable
 class ChatPage extends StatelessWidget {

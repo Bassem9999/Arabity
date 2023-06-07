@@ -29,12 +29,13 @@ class ChatsList extends StatelessWidget {
               body: FutureBuilder(
                   future: cubit.getMyChats(sendFrom: sendFrom),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (cubit.chats.isNotEmpty) {
+                    if (snapshot.hasData) {
                       return ListView.builder(
-                          itemCount: cubit.chats.length,
+                          itemCount: snapshot.data.length,
                           itemBuilder: (context, i) {
-                            return Row(
-                              children: [Text(cubit.chats[i])],
+                            return ListTile(
+                              title: Text(snapshot.data[i]),
+                              
                             );
                           });
                     } else {
